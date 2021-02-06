@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.container {
+position:relative;
+
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  width: 50%;
+  float: left;
+}
+
+.darker {
+position:relative;
+  border: 2px solid #dedede;
+  border-color: #ccc;
+  background-color: #ddd;
+  padding: 10px;
+  margin: 10px 0;
+  width: 50%;
+  float: right;right:0px;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.darker::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+.darker img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+.darker img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+.hello{
+  width: 100%;
+  height: 100%;
+
+}
+</style>
+</head>
+<body>
+
+<h2>Chat Messages</h2>
+<div class ="hello">
+<div class="container">
+  <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+  <p>Hello. How are you today?</p>
+  <span class="time-right">11:00</span>
+</div>
+
+<div class="darker">
+  <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
+  <p>Hey! I'm fine. Thanks for asking!</p>
+  <span class="time-left">11:01</span>
+</div>
+<div class="container">
+  <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+  <p>Hello. How are you today?</p>
+  <span class="time-right">11:00</span>
+</div>
+
+<div class="darker">
+  <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
+  <p>Hey! I'm fine. Thanks for asking!</p>
+  <span class="time-left">11:01</span>
+</div>
+</div>
+
+<script>
+$("div").touchstart (function(){
+  clearTimeout(pressTimer);
+  // Clear timeout
+  alert("2");
+  return false;
+}).pointerdown(function(){
+  // Set timeout
+  pressTimer = window.setTimeout(function() {alert("1");},1000);
+  return false; 
+});
+</script>
+</body>
+</html>

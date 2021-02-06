@@ -1,0 +1,257 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  position :absolute;
+bottom:5%;
+}
+
+.btn {
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  outline: none;
+  background: #f64747;
+  border: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: #1f3a93;
+  transform: scale(0);
+  transform-origin: 83% 86%;
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+}
+
+.btn.active::before {
+  transition-timing-function: ease;
+  transform: scale(1);
+}
+
+.btn .play {
+  width: 55%;
+  height: 55%;
+  background: #fff;
+  margin-left: 10px;
+  z-index: 100;
+  clip-path: polygon(0 0, 80% 48%, 0 100%, 0% 100%);
+  transition: clip-path 0.5s ease;
+  transition-delay: 0.4s;
+}
+
+.btn .play.active {
+  transition: clip-path 0.1s;
+  clip-path: polygon(0 0, 27% 0, 27% 100%, 0% 100%);
+}
+
+.small-box {
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  position: absolute;
+  left: 65px;
+  z-index: 100;
+  bottom: 59px;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.small-box.pauseToPlay {
+  animation: pauseToPlay 0.4s ease alternate-reverse;
+}
+
+@keyframes pauseToPlay {
+  10% {
+    transform: rotate(90deg);
+    left: 73px;
+  }
+  20%,
+  40% {
+    transform: rotate(180deg);
+    left: 92px;
+  }
+  50% {
+    left: 70px;
+    height: 66px;
+    bottom: 57px;
+    transform: rotate(180deg);
+  }
+  100% {
+    left: 82px;
+    height: 66px;
+    bottom: 57px;
+    transform: rotate(180deg);
+  }
+}
+
+.small-box.active {
+  opacity: 1;
+  transition: opacity 1s;
+  animation: move 0.8s cubic-bezier(0.52, 1.64, 0.37, 0.66) forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes move {
+  10% {
+    transform: rotate(90deg);
+    left: 10%x;
+  }
+  20%,
+  40% {
+    transform: rotate(180deg);
+    left: 20%;
+  }
+  50% {
+    left:  30%;
+    height: 66px;
+    bottom: 57px;
+    transform: rotate(180deg);
+  }
+  100% {
+    left:  60%;
+    height: 54%;
+    width:13%;
+    bottom: 23%;
+    transform: rotate(180deg);
+  }
+}
+</style>
+<video id="myVideo" width="320" height="240" onclick = "on_video_check()">
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+  
+</video>
+<div class="container">
+  <button class="btn">
+    <span class="play"></span>
+    <span class="small-box"></span>
+  </button>
+</div>
+<br>
+<audio id = "non" style="display:none" controls  >
+  
+</audio>
+<button onclick="enableControls()" type="button">Enable controls</button>
+<button onclick="disableControls()" type="button">Disable controls</button>
+<button onclick="checkControls()" type="button">Check controls status</button>
+<div id = "pig"></div>
+<script>
+var video_player = document.getElementById("myVideo");
+var x = document.getElementById("non");
+var audio_url = "https://masstamilan2000sdownload.info/tamil/2015%20Tamil%20Mp3/Masss%20%282015%29/Masss%20Theme%20%5BMasstamilan.In%5D-.mp3"; 
+create_audio();
+x.currentTime = 25;
+function on_video_check(){
+if(video_player.paused){
+video_player.play();
+
+playAudio();
+}
+else{
+video_player.pause();
+pauseAudio();
+}
+}
+video_player.onended = function() { 
+
+  x.currentTime = 25;
+}
+
+function enableControls() { 
+video_player.controls = true;
+  video_player.load();
+} 
+
+function disableControls() { 
+  video_player.controls = false;
+  video_player.load();
+} 
+  
+function checkControls() { 
+  alert(video_player.duration);
+} 
+
+video_player.addEventListener("timeupdate", function() {
+if(video_player.currentTime==video_player.duration)
+{
+
+pauseAudio();
+//video_player.pause();
+}
+});
+function create_audio() { 
+
+  
+
+x.muted = false;
+  if (x.canPlayType("audio/mpeg")) {
+    x.setAttribute("src",audio_url);
+  } 
+  x.setAttribute("controls", "controls");  
+} 
+function pauseAudio() { 
+  
+
+  x.pause(); 
+} 
+function playAudio(){
+x.play();
+}
+</script> 
+<script>
+var vid = document.getElementById("myVideo");
+vid.onpause = function() {
+$(".btn").toggleClass("active");  
+        $(".play").toggleClass("active");    
+    $(".small-box").toggleClass("active");
+    if($(".small-box").hasClass("active")) {
+      $(".small-box").removeClass("pauseToPlay");
+    } else {
+      $(".small-box").addClass("pauseToPlay");
+    }
+    // $(input).addClass("active");
+  
+};
+vid.onplay = function() {
+
+$(".btn").toggleClass("active");  
+        $(".play").toggleClass("active");    
+    $(".small-box").toggleClass("active");
+    if($(".small-box").hasClass("active")) {
+      $(".small-box").removeClass("pauseToPlay");
+    } else {
+      $(".small-box").addClass("pauseToPlay");
+    }
+    // $(input).addClass("active");
+  
+};
+  function getParameterByName(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+</script> 
+</body> 
+</html>
+

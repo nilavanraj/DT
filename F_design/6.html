@@ -1,0 +1,132 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+.button {
+position:absolute;
+left:15px;
+bottom:15px;
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  width: 0;
+  height: 15px;
+  outline: none;
+  opacity:.9;
+  border-color: transparent transparent transparent #262626;
+  transition: 100ms all ease;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 9px 0 9px 13px;
+}
+.button.paused {
+  border-style: double;
+  border-width: 0px 0 0px 15px;
+}
+.button:active {
+  border-color: transparent transparent transparent #404040;
+}
+#video_div{
+position:relative;
+}
+</style>
+<div id = "video_div">
+<video id="myVideo" width="320" height="240" onclick = "on_video_check()" audio_url="https://masstamilan2000sdownload.info/tamil/2015%20Tamil%20Mp3/Masss%20%282015%29/Masss%20Theme%20%5BMasstamilan.In%5D-.mp3" video_info="1">
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+  
+</video>
+<button class='button'></button>
+<audio id = "non" style="display:none" controls  >  
+</audio>
+<button onclick="enableControls()" type="button">Enable controls</button>
+<button onclick="disableControls()" type="button">Disable controls</button>
+<button onclick="checkControls()" type="button">Check controls status</button>
+<div id = "pig"></div>
+<script>
+var video_player = document.getElementById("myVideo");
+var x = document.getElementById("non");
+var currenttime = 25;
+var audio_url = video_player.getAttribute("audio_url");
+alert(audio_url);
+ var btn = $(".button");
+create_audio();
+x.currentTime = currenttime;
+function on_video_check(){
+if(video_player.paused){
+video_player.play();
+
+playAudio();
+}
+else{
+video_player.pause();
+pauseAudio();
+}
+}
+video_player.onended = function() { 
+
+  x.currentTime = currenttime;
+}
+
+function enableControls() { 
+video_player.controls = true;
+  video_player.load();
+} 
+
+function disableControls() { 
+  video_player.controls = false;
+  video_player.load();
+} 
+  
+function checkControls() { 
+  alert(video_player.duration);
+} 
+
+video_player.addEventListener("timeupdate", function() {
+if(video_player.currentTime==video_player.duration)
+{
+
+pauseAudio();
+//video_player.pause();
+}
+});
+function create_audio() { 
+
+  
+
+x.muted = false;
+  if (x.canPlayType("audio/mpeg")) {
+    x.setAttribute("src",audio_url);
+  } 
+  x.setAttribute("controls", "controls");  
+} 
+function pauseAudio() { 
+  
+
+  x.pause(); 
+} 
+function playAudio(){
+x.play();
+}
+
+var vid = document.getElementById("myVideo");
+vid.onpause = function() {
+    btn.toggleClass("paused");
+
+};
+vid.onplay = function() {
+    btn.toggleClass("paused");
+
+$
+  
+};
+  function getParameterByName(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+</script> 
+</body> 
+</html>
+

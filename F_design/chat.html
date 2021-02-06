@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+<style>
+#fname {
+height:auto;
+
+  overflow: auto;
+}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+body {
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  line-height: 1.5;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+/* Cool scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+  display: block
+}
+::-webkit-scrollbar-thumb {
+  background: #e4eaf5;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(196, 201, 211)
+}
+/* Center stuff and background */
+
+
+.container {
+position:absolute;
+  background: #27ae60;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  bottom:0%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+/** This is the css of the input **/
+#w-input-container {
+position:absolute;
+width: 80%;
+left:0;
+  min-height: 20px;
+  box-sizing: border-box;
+  padding: 9px 18px 11px;
+  margin: 5px 10px;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 21px;
+}
+
+.w-input-text-group {
+  position: relative;
+}
+
+.w-placeholder {
+  color: #a0a0a0;
+  top: 0;
+  pointer-events: none;
+  user-select: none;
+  position: absolute;
+  opacity: 0;
+  transition: 0.2s padding ease-in-out;
+}
+
+#w-input-text {
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  z-index: 1;
+  max-height: 100px;
+  min-height: 15px;
+  padding: 0 0 0 2px;
+  outline: 0;
+  transition: 0.2s padding ease-in-out;
+}
+
+#w-input-text:empty + .w-placeholder {
+  opacity: 1;
+}
+
+#w-input-text:focus + .w-placeholder {
+  padding: 0 6px 0px;
+}
+
+#w-input-text:focus {
+  padding: 0 6px 0px;
+}
+.send_icon{
+position:absolute;
+right:5%;
+bottom:15%;
+size:200px;
+font-size:45px;
+color:white;
+
+}
+
+</style>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+
+<div class="container">
+<div id="send_icon"> </div>
+  <div id="w-input-container" onclick="setFocus()">
+    <div class="w-input-text-group">
+      <div id="w-input-text" contenteditable onkeyup="send_icon()"></div>
+      <div class="w-placeholder">
+        Type a message
+      </div>
+    </div>
+  </div>
+ </div>
+
+
+<script>
+function send_text() {
+  var x = document.getElementById('w-input-text').innerHTML;
+  
+  alert(x);
+ document.getElementById('w-input-text').innerHTML=""; 
+ document.getElementById('send_icon').innerHTML ="";
+}
+function setFocus () {
+  document.getElementById('w-input-text').focus();
+}
+function send_icon() {
+ var x = document.getElementById('w-input-text').innerHTML;
+
+ if(x){
+ document.getElementById('send_icon').innerHTML = '<ion-icon ios="ios-send" md="md-send" class="send_icon"class=" w3-animate-left" onclick="send_text()"></ion-icon>'}
+ else{
+ document.getElementById('send_icon').innerHTML ="";
+ }}
+</script>
+
+</body>
+</html>
